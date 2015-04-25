@@ -17,24 +17,24 @@
     "watchify": "~3.1.0",
     "browserify": "~9.0.7",
     "gulp-sass-bulk-import": "~0.2.0",
-    "api-mock": "~0.2.2"
+    "api-mock": "~0.2.2",
+    "jest-cli": "~0.4.0",
+    "babel-jest": "~5.0.1"
   },
   "scripts": {
     "dev": "gulp --type dev",
     "start": "NODE_PATH=src/js NODE_ENV=dev && gulp --type dev",
+    "test": "NODE_PATH=src/js jest src/js",
     "build": "gulp build",
     "mock-api": "node node_modules/api-mock/bin/api-mock api-mock.md --port 3030"
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
     "testFileExtensions": [
-      "es6",
       "js"
     ],
     "moduleFileExtensions": [
-      "js",
-      "json",
-      "es6"
+      "js"
     ]
   },
   "dependencies": {

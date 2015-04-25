@@ -5,8 +5,6 @@ module.exports = {
 		VIEW_ACTION: 'VIEW_ACTION'
 	},
 
-	stoages: {
-		ITEMS_STORAGE: 'items'
-	}
+	API_HOST: 'http://localhost:3030'
 
 };
