@@ -24,6 +24,7 @@ let App = React.createClass({
 				</span>
 			</li>
 		);
+		// TODO casting to std. timestamp must be in.. file model?
 	}
 
 });

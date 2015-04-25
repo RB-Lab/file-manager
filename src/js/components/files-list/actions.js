@@ -18,5 +18,11 @@ module.exports = {
 			.catch((err) => {
 				// TODO what to do if we got error?
 			});
+	},
+	sortFiles(field){
+		AppDispatcher.handleViewAction({
+			type: Constants.SORT_FILES,
+			data: field
+		});
 	}
 };

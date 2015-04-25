@@ -1,9 +1,11 @@
 .file{
-	font-size: 0
+	font-size: 0;
+
+	&__data-item{
+		font-size: $default-font-size;
+		width: 20%;
+		display: inline-block
+	}
+
 }
 
-.file__data-item{
-	font-size: initial;
-	width: 20%;
-	display: inline-block
-}

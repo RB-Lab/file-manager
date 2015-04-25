@@ -1,1 +1,7 @@
-
+.files-list__header-item{
+	list-style: none;
+	display: inline-block;
+	width: 20%;
+	font-size: $default-font-size;
+	cursor: pointer;
+}
