@@ -1,6 +1,7 @@
 const React = require('react');
 const Actions = require('./actions');
 const Store = require('./store');
+const File = require('components/file/component.jsx');
 
 
 let App = React.createClass({
@@ -27,13 +28,7 @@ let App = React.createClass({
 			<ul className="files-list">
 				{this.state.files.map(function(file){
 					return (
-						<li className="files-list__file">
-							<span className="files-list__file-data-item">{file.title}</span>
-							<span className="files-list__file-data-item">{file.status}</span>
-							<span className="files-list__file-data-item">{file.type}</span>
-							<span className="files-list__file-data-item">{file.created}</span>
-							<span className="files-list__file-data-item">{file.modified}</span>
-						</li>
+						<File data={file}/>
 					);
 				})}
 			</ul>
