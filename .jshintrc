@@ -16,5 +16,6 @@
 	"trailing": true,
 	"smarttabs": true,
 	"white": true,
-	"predef": ["document"]
+	"jasmine": true,
+	"predef": ["jest"]
 }

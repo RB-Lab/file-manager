@@ -23,7 +23,7 @@
   },
   "scripts": {
     "dev": "gulp --type dev",
-    "start": "NODE_PATH=src/js NODE_ENV=dev && gulp --type dev",
+    "start": "NODE_PATH=src/js gulp --type dev",
     "test": "NODE_PATH=src/js jest src/js",
     "build": "gulp build",
     "mock-api": "node node_modules/api-mock/bin/api-mock api-mock.md --port 3030"
@@ -38,13 +38,14 @@
     ]
   },
   "dependencies": {
-    "material-ui-sass": "~0.7.2",
-    "react-tap-event-plugin": "~0.1.6",
-    "material-ui": "~0.7.3",
-    "object-assign": "~2.0.0",
+    "es6-promise": "^2.1.1",
     "flux": "~2.0.1",
-    "react": "~0.13.1",
     "lodash": "~3.6.0",
+    "material-ui": "~0.7.3",
+    "material-ui-sass": "~0.7.2",
+    "object-assign": "~2.0.0",
+    "react": "~0.13.1",
+    "react-tap-event-plugin": "~0.1.6",
     "xhr": "~2.0.1"
   }
 }
