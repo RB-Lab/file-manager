@@ -1,0 +1,3 @@
+module.exports = {
+	FOLDER_CONTENT_ARRIVED: 'FOLDER_CONTENT_ARRIVED'
+};

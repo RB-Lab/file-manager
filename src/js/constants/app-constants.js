@@ -5,6 +5,7 @@ module.exports = {
 		VIEW_ACTION: 'VIEW_ACTION'
 	},
 
-	API_HOST: 'http://localhost:3030'
+	API_HOST: 'http://localhost:3030',
+	DEFAULT_FOLDER: '10101' // TODO this has to be moved to router
 
 };

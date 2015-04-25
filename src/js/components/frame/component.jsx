@@ -1,5 +1,6 @@
 const React = require('react');
 const Store = require('./store');
+const FilesList = require('components/files-list/component.jsx');
 
 
 let App = React.createClass({
@@ -24,6 +25,7 @@ let App = React.createClass({
 	render() {
 		return (
 			<div id="frame">
+				<FilesList />
 			</div>
 		);
 	}
