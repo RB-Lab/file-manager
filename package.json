@@ -46,6 +46,7 @@
     "object-assign": "~2.0.0",
     "react": "~0.13.1",
     "react-tap-event-plugin": "~0.1.6",
-    "xhr": "~2.0.1"
+    "xhr": "~2.0.1",
+    "moment": "~2.10.2"
   }
 }
