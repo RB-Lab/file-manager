@@ -66,6 +66,10 @@ var FilesListStore = assign({}, EventEmitter.prototype, {
 
 	getSortingSettings(){
 		return currentSort;
+	},
+
+	getFilterSettings(){
+		return currentFilter;
 	}
 });
 

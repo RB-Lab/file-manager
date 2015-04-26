@@ -8,11 +8,19 @@ const FileModel = require('models/file');
 let App = React.createClass({
 
 	getInitialState() {
-		return {files: Store.getFolderContent(), sort: Store.getSortingSettings()};
+		return {
+			files: Store.getFolderContent(),
+			sort: Store.getSortingSettings(),
+			filter: Store.getFilterSettings()
+		};
 	},
 
 	onChange_() {
-		this.setState({files: Store.getFolderContent(), sort: Store.getSortingSettings()});
+		this.setState({
+			files: Store.getFolderContent(),
+			sort: Store.getSortingSettings(),
+			filter: Store.getFilterSettings()
+		});
 	},
 
 	componentDidMount() {
@@ -50,7 +58,7 @@ let App = React.createClass({
 				<ul className="files-list__list">
 					{this.state.files.map((file) => {
 						return (
-							<File key={file.id} data={file}/>
+							<File key={file.id} data={file} matcher={this.state.filter}/>
 						);
 					})}
 				</ul>

@@ -15,7 +15,18 @@ function getIconName(type){
 
 let App = React.createClass({
 
-
+	getTitle_(){
+		if(!this.props.matcher) return this.props.data.title;
+		var title = this.props.data.title, matcher = this.props.matcher;
+		var start = title.search(new RegExp(matcher, 'i'));
+		return (
+			<span>
+				{title.slice(0, start)}
+				<b>{title.slice(start, start + matcher.length)}</b>
+				{title.slice(start + matcher.length)}
+			</span>
+		);
+	},
 
 	render() {
 		return (
@@ -23,7 +34,7 @@ let App = React.createClass({
 				<FontIcon className={getIconName(this.props.data.type)}/>
 				<span className="file__data">
 					<span className="file__data-item">
-						{this.props.data.title}
+						{this.getTitle_()}
 					</span>
 					<span className="file__data-item">
 						{this.props.data.status}
