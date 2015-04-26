@@ -1,5 +1,6 @@
 const React = require('react');
 const Store = require('./store');
+const Actions = require('./actions');
 const FilesList = require('components/files-list/component.jsx');
 const {Toolbar, ToolbarGroup, RaisedButton, TextField} = require('material-ui');
 
@@ -14,6 +15,9 @@ let App = React.createClass({
 		this.setState(this._getState());
 	},
 
+	onInput_(e){
+		Actions.filterFiles(e.currentTarget.value);
+	},
 
 	componentDidMount() {
 		Store.addChangeListener(this.onChange_);
@@ -36,7 +40,7 @@ let App = React.createClass({
 					</ToolbarGroup>
 					<ToolbarGroup key={1} float="right">
 						<span className="toolbar__search-pane">
-							<TextField hintText='Filter files'/>
+							<TextField hintText='Filter files' onInput={this.onInput_} />
 						</span>
 					</ToolbarGroup>
 				</Toolbar>

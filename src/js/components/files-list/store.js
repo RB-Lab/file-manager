@@ -11,6 +11,7 @@ var currentSort = {
 	field: null,
 	asc: true
 };
+var currentFilter = '';
 
 function setFiles(newFiles){
 	// TODO add check if newFiles is not array - where to catch it?
@@ -40,7 +41,7 @@ function sortFiles(field){
 	});
 }
 
-var FrameStore = assign({}, EventEmitter.prototype, {
+var FilesListStore = assign({}, EventEmitter.prototype, {
 
 	// Allow Controller-View to register itself with store
 	addChangeListener(callback) {
@@ -57,7 +58,10 @@ var FrameStore = assign({}, EventEmitter.prototype, {
 	},
 
 	getFolderContent() {
-		return files;
+		if(!currentFilter) return files;
+		return files.filter((file) => {
+			return file.title.search(new RegExp(currentFilter, 'i')) >= 0;
+		});
 	},
 
 	getSortingSettings(){
@@ -69,13 +73,17 @@ AppDispatcher.register((payload) => {
 	switch(payload.action.type){
 		case Constants.FOLDER_CONTENT_ARRIVED:
 			setFiles(payload.action.data);
-			FrameStore.emitChange();
+			FilesListStore.emitChange();
 			break;
 		case Constants.SORT_FILES:
 			sortFiles(payload.action.data);
-			FrameStore.emitChange();
+			FilesListStore.emitChange();
+			break;
+		case Constants.FILTER_FILES:
+			currentFilter = payload.action.data;
+			FilesListStore.emitChange();
 			break;
 	}
 });
 
-module.exports = FrameStore;
+module.exports = FilesListStore;
