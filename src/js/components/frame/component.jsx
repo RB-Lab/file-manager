@@ -1,6 +1,7 @@
 const React = require('react');
 const Store = require('./store');
 const FilesList = require('components/files-list/component.jsx');
+const {Toolbar, ToolbarGroup, RaisedButton, TextField} = require('material-ui');
 
 
 let App = React.createClass({
@@ -24,9 +25,23 @@ let App = React.createClass({
 
 	render() {
 		return (
-			<div id="frame">
+			<section id="frame">
+				<Toolbar>
+					<ToolbarGroup key={0} float="left">
+						<span className="toolbar__folder-pane">
+							<span className="toolbar__follder-button"><RaisedButton label="folder a >"/></span>
+							<span className="toolbar__follder-button"><RaisedButton label="folder b >"/></span>
+							<span className="toolbar__follder-button"><RaisedButton label="folder c"/></span>
+						</span>
+					</ToolbarGroup>
+					<ToolbarGroup key={1} float="right">
+						<span className="toolbar__search-pane">
+							<TextField hintText='Filter files'/>
+						</span>
+					</ToolbarGroup>
+				</Toolbar>
 				<FilesList />
-			</div>
+			</section>
 		);
 	}
 

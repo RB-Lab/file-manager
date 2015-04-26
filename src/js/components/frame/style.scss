@@ -1,5 +1,22 @@
-#frame{
-	section{
-		padding: 0 24px
+.toolbar__folder-pane{
+	padding-left: 0.4rem;
+}
+
+.toolbar__follder-button{
+	.mui-raised-button{
+		margin-left: 0 !important;
+		margin-right: 2px !important;
+	}
+}
+
+.toolbar__search-pane{
+	display: inline-block;
+	height: 3rem;
+	margin: 0.4em 1em 0 0;
+	padding: 0 0.5em;
+	background: white;
+	input:focus{ // trick against materialize
+		border-bottom: none !important;
+		box-shadow: none !important;
 	}
 }
