@@ -24,7 +24,6 @@ let App = React.createClass({
 	},
 
 	componentDidMount() {
-		Actions.fetchFolderContent(this.props.currentFolderId);
 		Store.addChangeListener(this.onChange_);
 	},
 

@@ -8,11 +8,11 @@ const {Toolbar, ToolbarGroup, RaisedButton, TextField} = require('material-ui');
 let App = React.createClass({
 
 	getInitialState() {
-		return {};
+		return Store.getState();
 	},
 
 	onChange_() {
-		this.setState(this._getState());
+		this.setState(Store.getState());
 	},
 
 	onInput_(e){
@@ -20,11 +20,33 @@ let App = React.createClass({
 	},
 
 	componentDidMount() {
+		this.changeFolder_();
 		Store.addChangeListener(this.onChange_);
 	},
 
 	componentWillUnmount() {
 		Store.removeChangeListener(this.onChange_);
+	},
+
+	changeFolder_(id){
+		Actions.fetchFolderContent(id);
+		Actions.fetchFolderPath(id);
+	},
+
+	renderFolder_(folder, index){
+		var label = folder.title, disabled = true;
+		if(index < this.state.currentPath.length - 1) {
+			label += ' >';
+			disabled = false;
+		}
+		return(
+			<span className="toolbar__follder-button">
+				<RaisedButton
+					label={label}
+					disabled={disabled}
+					onClick={this.changeFolder_.bind(this, folder.id)}/>
+			</span>
+		);
 	},
 
 	render() {
@@ -33,9 +55,7 @@ let App = React.createClass({
 				<Toolbar>
 					<ToolbarGroup key={0} float="left">
 						<span className="toolbar__folder-pane">
-							<span className="toolbar__follder-button"><RaisedButton label="folder a >"/></span>
-							<span className="toolbar__follder-button"><RaisedButton label="folder b >"/></span>
-							<span className="toolbar__follder-button"><RaisedButton label="folder c"/></span>
+							{this.state.currentPath.map(this.renderFolder_)}
 						</span>
 					</ToolbarGroup>
 					<ToolbarGroup key={1} float="right">

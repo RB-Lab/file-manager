@@ -1,3 +1,3 @@
 module.exports = {
-
+	FOLDER_PATH_ARRIVED: 'FOLDER_PATH_ARRIVED'
 };

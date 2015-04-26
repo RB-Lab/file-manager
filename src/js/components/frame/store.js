@@ -6,7 +6,7 @@ const Constants = require('./constants');
 const CHANGE_EVENT = 'change';
 
 var frameState = {
-
+	currentPath: []
 };
 
 var FrameStore = assign({}, EventEmitter.prototype, {
@@ -32,7 +32,10 @@ var FrameStore = assign({}, EventEmitter.prototype, {
 
 AppDispatcher.register((payload) => {
 	switch(payload.action.type){
-
+		case Constants.FOLDER_PATH_ARRIVED:
+			frameState.currentPath = payload.action.data;
+			FrameStore.emitChange();
+			break;
 	}
 });
 
