@@ -1,15 +1,24 @@
 .file{
 	list-style: none;
 	transition: background .3s ease;
+	height: 2.6rem;
+	position: relative;
+
 	&:hover{
 		background: $cyan-50;
+	}
+
+	&__icon {
+		margin: 0.4em;
+		position: absolute;
+		left: -1.7em;
 	}
 
 	&__data-item{
 		font-size: $default-font-size;
 		width: 20%;
 		display: inline-block;
-		padding: 0.4rem;
+		padding: 0.7rem 0.4rem 0.4rem;
 	}
 
 }

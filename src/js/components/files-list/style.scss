@@ -1,24 +1,35 @@
-.files-list__header-item{
-	list-style: none;
-	display: inline-block;
-	width: 20%;
-	font-size: $default-font-size;
-	font-weight: 500;
-	cursor: pointer;
-	padding: 0.4rem;
-	border-bottom: 1px solid rgba(0,0,0,.12);
-	&:after{
-		content: "\25BE";
+.files-list{
+
+	&__header{
+		border-bottom: 1px solid rgba(0,0,0,.12);
+		padding-left: 3rem;
+	}
+
+	&__header-item{
+		list-style: none;
 		display: inline-block;
-		margin-left: 20px;
-		opacity: 0;
-		transition: opacity 0.3s ease, transform 0.4s ease;
+		width: 20%;
+		font-size: $default-font-size;
+		font-weight: 500;
+		cursor: pointer;
+		padding: 0.4rem;
+		&:after{
+			content: "\25BE";
+			display: inline-block;
+			margin-left: 20px;
+			opacity: 0;
+			transition: opacity 0.3s ease, transform 0.4s ease;
+		}
+		&--sort-asc:after{
+			opacity: 1
+		}
+		&--sort-desc:after{
+			opacity: 1;
+			transform: rotate(180deg)
+		}
 	}
-	&--sort-asc:after{
-		opacity: 1
-	}
-	&--sort-desc:after{
-		opacity: 1;
-		transform: rotate(180deg)
+
+	&__list{
+		padding-left: 3rem;
 	}
 }
