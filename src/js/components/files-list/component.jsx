@@ -1,18 +1,18 @@
 const React = require('react');
 const Actions = require('./actions');
 const Store = require('./store');
-const constatns = require('./constants');
 const File = require('components/file/component.jsx');
+const FileModel = require('models/file');
 
 
 let App = React.createClass({
 
 	getInitialState() {
-		return {files: Store.getFolderContent()};
+		return {files: Store.getFolderContent(), sort: Store.getSortingSettings()};
 	},
 
 	onChange_() {
-		this.setState({files: Store.getFolderContent()});
+		this.setState({files: Store.getFolderContent(), sort: Store.getSortingSettings()});
 	},
 
 	componentDidMount() {
@@ -24,24 +24,19 @@ let App = React.createClass({
 		Store.removeChangeListener(this.onChange_);
 	},
 
-	sortByTitle_(){
-		Actions.sortFiles(constatns.SORT_BY_TITLE);
+	sort_(field){
+		Actions.sortFiles(field);
 	},
 
-	sortByStatus_(){
-		Actions.sortFiles(constatns.SORT_BY_STATUS);
-	},
-
-	sortByType_(){
-		Actions.sortFiles(constatns.SORT_BY_TYPE);
-	},
-
-	sortByCreated_(){
-		Actions.sortFiles(constatns.SORT_BY_CREATED);
-	},
-
-	sortByModified_(){
-		Actions.sortFiles(constatns.SORT_BY_MODIFIED);
+	renderField(field){
+		var className = 'files-list__header-item';
+		if(this.state.sort.field === field){
+			className += ' files-list__header-item';
+			className += this.state.sort.asc ? '--sort-asc' : '--sort-desc';
+		}
+		return (
+			<li key={field} className={className} onClick={this.sort_.bind(this, field)}>{field}</li>
+		);
 	},
 
 	render() {
@@ -49,17 +44,13 @@ let App = React.createClass({
 			<section classNameName="files-list">
 				<header className="files-list__header">
 					<ul>
-						<li className="files-list__header-item" onClick={this.sortByTitle_}>title</li>
-						<li className="files-list__header-item" onClick={this.sortByStatus_}>status</li>
-						<li className="files-list__header-item" onClick={this.sortByType_}>type</li>
-						<li className="files-list__header-item" onClick={this.sortByCreated_}>created</li>
-						<li className="files-list__header-item" onClick={this.sortByModified_}>modified</li>
+						{FileModel.FIELDS.map(this.renderField)}
 					</ul>
 				</header>
 				<ul className="files-list__list">
-					{this.state.files.map(function(file){
+					{this.state.files.map((file) => {
 						return (
-							<File data={file}/>
+							<File key={file.id} data={file}/>
 						);
 					})}
 				</ul>

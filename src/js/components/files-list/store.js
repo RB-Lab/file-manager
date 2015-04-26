@@ -1,8 +1,8 @@
 const assign = require('object-assign');
-const _ = require('lodash');
 const EventEmitter = require('events').EventEmitter;
 const AppDispatcher = require('app-dispatcher');
 const Constants = require('./constants');
+const File = require('models/file');
 
 const CHANGE_EVENT = 'change';
 
@@ -14,7 +14,10 @@ var currentSort = {
 
 function setFiles(newFiles){
 	// TODO add check if newFiles is not array - where to catch it?
-	files = newFiles;
+	files = [];
+	newFiles.forEach((file) => {
+		files.push(new File(file));
+	});
 }
 
 function setCurrentSort(field){
@@ -26,20 +29,8 @@ function setCurrentSort(field){
 	}
 }
 
-function findField(field){
-	var map = {
-		title: Constants.SORT_BY_TITLE,
-		status: Constants.SORT_BY_STATUS,
-		type: Constants.SORT_BY_TYPE,
-		created: Constants.SORT_BY_CREATED,
-		modified: Constants.SORT_BY_MODIFIED
-	};
-	return _.invert(map)[field];
-}
-
 function sortFiles(field){
 	setCurrentSort(field);
-	field = findField(field);
 	files.sort(function(a,b){
 		if(currentSort.asc){
 			return a[field] > b[field];
@@ -67,6 +58,10 @@ var FrameStore = assign({}, EventEmitter.prototype, {
 
 	getFolderContent() {
 		return files;
+	},
+
+	getSortingSettings(){
+		return currentSort;
 	}
 });
 

@@ -39,7 +39,7 @@ const actionSortFilesByModified = {
 	sourse: AppConstants.ActionSources.VIEW_ACTION,
 	action: {
 		type: Constants.SORT_FILES,
-		data: Constants.SORT_BY_MODIFIED
+		data: 'modified'
 	}
 };
 
@@ -47,7 +47,7 @@ const actionSortFilesByTitle = {
 	sourse: AppConstants.ActionSources.VIEW_ACTION,
 	action: {
 		type: Constants.SORT_FILES,
-		data: Constants.SORT_BY_TITLE
+		data: 'title'
 	}
 };
 

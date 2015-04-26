@@ -17,14 +17,13 @@ let App = React.createClass({
 					{this.props.data.type}
 				</span>
 				<span className="file__data-item">
-					{moment(this.props.data.created * 1000).fromNow()}
+					{moment(this.props.data.created).fromNow()}
 				</span>
 				<span className="file__data-item">
-					{moment(this.props.data.modified * 1000).fromNow()}
+					{moment(this.props.data.modified).fromNow()}
 				</span>
 			</li>
 		);
-		// TODO casting to std. timestamp must be in.. file model?
 	}
 
 });

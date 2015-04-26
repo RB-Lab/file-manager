@@ -10,5 +10,6 @@ function File(data){
 Object.defineProperty(File, 'FIELDS', {
 	value: ['title','status','type','created','modified']
 });
+Object.freeze(File.FIELDS);
 
 module.exports = File;
