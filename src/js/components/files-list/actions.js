@@ -10,7 +10,7 @@ module.exports = {
 
 		serverStorage.get('/folder-content/' + folder)
 			.then((res) => {
-				AppDispatcher.handleViewAction({
+				AppDispatcher.handleServerAction({
 					type: Constants.FOLDER_CONTENT_ARRIVED,
 					data: res.data
 				});
