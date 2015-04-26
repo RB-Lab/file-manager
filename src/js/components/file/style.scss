@@ -1,10 +1,15 @@
 .file{
-	font-size: 0;
+	list-style: none;
+	transition: background .3s ease;
+	&:hover{
+		background: $cyan-50;
+	}
 
 	&__data-item{
 		font-size: $default-font-size;
 		width: 20%;
-		display: inline-block
+		display: inline-block;
+		padding: 0.4rem;
 	}
 
 }
