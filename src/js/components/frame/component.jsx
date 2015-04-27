@@ -1,6 +1,7 @@
 const React = require('react');
 const Store = require('./store');
 const Actions = require('./actions');
+const AppActions = require('app-actions');
 const FilesList = require('components/files-list/component.jsx');
 const {Toolbar, ToolbarGroup, RaisedButton, TextField} = require('material-ui');
 
@@ -29,8 +30,7 @@ let App = React.createClass({
 	},
 
 	changeFolder_(id){
-		Actions.fetchFolderContent(id);
-		Actions.fetchFolderPath(id);
+		AppActions.openFolder(id);
 	},
 
 	renderFolder_(folder, index){

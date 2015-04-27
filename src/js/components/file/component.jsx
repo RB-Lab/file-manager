@@ -1,6 +1,7 @@
 const React = require('react');
 const moment = require('moment');
 const {FontIcon} = require('material-ui');
+const AppActions = require('app-actions');
 
 const mdiClasses = {
 	folder: 'mdi-file-folder',
@@ -28,9 +29,18 @@ let App = React.createClass({
 		);
 	},
 
+	getFileClassName_(){
+		return this.props.data.type === 'folder' ? 'file file--folder' : 'file';
+	},
+
+	handleClick_(){
+		if(this.props.data.type !== 'folder') return;
+		AppActions.openFolder(this.props.data.id);
+	},
+
 	render() {
 		return (
-			<li className="file">
+			<li className={this.getFileClassName_()} onClick={this.handleClick_}>
 				<FontIcon className={getIconName(this.props.data.type)}/>
 				<span className="file__data">
 					<span className="file__data-item">
