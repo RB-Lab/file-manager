@@ -3,7 +3,7 @@ const Store = require('./store');
 const Actions = require('./actions');
 const AppActions = require('app-actions');
 const FilesList = require('components/files-list/component.jsx');
-const {Toolbar, ToolbarGroup, RaisedButton, TextField} = require('material-ui');
+const {Toolbar, ToolbarGroup, RaisedButton, TextField, Snackbar} = require('material-ui');
 
 
 let App = React.createClass({
@@ -14,6 +14,11 @@ let App = React.createClass({
 
 	onChange_() {
 		this.setState(Store.getState());
+		if(this.state.currentError){
+			this.refs.snackbar.show();
+		} else {
+			this.refs.snackbar.dismiss();
+		}
 	},
 
 	onInput_(e){
@@ -65,6 +70,7 @@ let App = React.createClass({
 					</ToolbarGroup>
 				</Toolbar>
 				<FilesList />
+				<Snackbar ref='snackbar' message={this.state.currentError.toString()} />
 			</section>
 		);
 	}

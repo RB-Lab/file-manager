@@ -114,6 +114,14 @@ actually varays only with parameters.
             "modified":"1429426001"
          },
          {  
+            "id":666,
+            "type":"folder",
+            "title":"Non-existent folder",
+            "status":"new",
+            "created":"1429620401",
+            "modified":"1429420021"
+         },
+         {  
             "id":2268,
             "type":"file",
             "title":"Company Z",

@@ -6,8 +6,21 @@ const Constants = require('./constants');
 const CHANGE_EVENT = 'change';
 
 var frameState = {
-	currentPath: []
+	currentPath: [],
+	currentError: false
 };
+
+function setError(err){
+	if(err.toString() === frameState.currentError.toString()) return false;
+	frameState.currentError = err;
+	return true;
+}
+
+function dismissError(err){
+	if(err.toString() !== frameState.currentError.toString()) return false;
+	frameState.currentError = false;
+	return true;
+}
 
 var FrameStore = assign({}, EventEmitter.prototype, {
 
@@ -35,6 +48,17 @@ AppDispatcher.register((payload) => {
 		case Constants.FOLDER_PATH_ARRIVED:
 			frameState.currentPath = payload.action.data;
 			FrameStore.emitChange();
+			break;
+		case Constants.SET_ERROR:
+			var wtf = setError(payload.action.data);
+			if(wtf){
+				FrameStore.emitChange();
+			}
+			break;
+		case Constants.DISMISS_ERROR:
+			if(dismissError(payload.action.data)){
+				FrameStore.emitChange();
+			}
 			break;
 	}
 });

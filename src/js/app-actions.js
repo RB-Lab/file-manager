@@ -1,8 +1,28 @@
 const AppDispatcher = require('app-dispatcher');
 const serverStorage = require('lib/server-storage');
-const DEFAULT_FOLDER = require('constants/app-constants').DEFAULT_FOLDER;
+
 const FilesListConstants = require('components/files-list/constants');
 const FrameConstants = require('components/frame/constants');
+
+const DEFAULT_FOLDER = require('constants/app-constants').DEFAULT_FOLDER;
+const ERROR_TIMEOUT = require('constants/app-constants').ERROR_TIMEOUT;
+
+var errorTimeout = null;
+function handleHTTPError(err){
+
+	AppDispatcher.handleServerAction({
+		type: FrameConstants.SET_ERROR,
+		data: err
+	});
+
+	clearTimeout(errorTimeout);
+	errorTimeout = setTimeout(() => {
+		AppDispatcher.handleViewAction({
+			type: FrameConstants.DISMISS_ERROR,
+			data: err
+		});
+	}, ERROR_TIMEOUT);
+}
 
 function fetchFolderContent(folder){
 	serverStorage.get('/folder-content/' + folder)
@@ -12,9 +32,7 @@ function fetchFolderContent(folder){
 				data: res.data
 			});
 		})
-		.catch((err) => {
-			// TODO what to do if we got error?
-		});
+		.catch(handleHTTPError);
 }
 
 function fetchFolderPath(folder){
@@ -25,9 +43,7 @@ function fetchFolderPath(folder){
 				data: res
 			});
 		})
-		.catch((err) => {
-			// TODO what to do if we got error?
-		});
+		.catch(handleHTTPError);
 }
 module.exports = {
 	openFolder(folder){

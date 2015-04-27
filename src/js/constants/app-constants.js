@@ -6,6 +6,7 @@ module.exports = {
 	},
 
 	API_HOST: 'http://localhost:3030',
-	DEFAULT_FOLDER: '10101' // TODO this has to be moved to router
+	DEFAULT_FOLDER: '10101', // TODO this has to be moved to router
+	ERROR_TIMEOUT: 2000
 
 };
