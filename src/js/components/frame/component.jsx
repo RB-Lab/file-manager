@@ -41,15 +41,14 @@ let App = React.createClass({
 	renderFolder_(folder, index){
 		var label = folder.title, disabled = true;
 		if(index < this.state.currentPath.length - 1) {
-			label += ' >';
+			label += ' / ';
 			disabled = false;
 		}
 		return(
-			<span className="toolbar__follder-button">
-				<RaisedButton
-					label={label}
-					disabled={disabled}
-					onClick={this.changeFolder_.bind(this, folder.id)}/>
+			<span
+				disabled ? 'toolbar__follder-button toolbar__follder-button--disabled' : 'toolbar__follder-button'
+				onClick={this.changeFolder_.bind(this, folder.id)}>
+				label
 			</span>
 		);
 	},
@@ -57,7 +56,7 @@ let App = React.createClass({
 	render() {
 		return (
 			<section id="frame">
-				<Toolbar>
+				<Toolbar className='toolbar'>
 					<ToolbarGroup key={0} float="left">
 						<span className="toolbar__folder-pane">
 							{this.state.currentPath.map(this.renderFolder_)}

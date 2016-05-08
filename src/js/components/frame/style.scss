@@ -1,11 +1,24 @@
+.toolbar{
+	background: #fff;
+	border-bottom: 1px solid #D6D6D6;
+	box-shadow: 0 0 5px rgba(51, 51, 51, 0.34);
+}
+
 .toolbar__folder-pane{
-	padding-left: 0.4rem;
+	padding-left: 1rem;
+	display: block;
+	margin-top: 16px;
 }
 
 .toolbar__follder-button{
-	.mui-raised-button{
-		margin-left: 0 !important;
-		margin-right: 2px !important;
+	font-size: 19px;
+	cursor: pointer;
+	&:hover{
+		text-decoration: underline;
+	}
+	&--disabled{
+		color: #999;
+		pointer-events: none
 	}
 }
 
