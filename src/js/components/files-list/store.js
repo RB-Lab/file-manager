@@ -34,9 +34,9 @@ function sortFiles(field){
 	setCurrentSort(field);
 	files.sort(function(a,b){
 		if(currentSort.asc){
-			return a[field] > b[field];
+			return a[field] > b[field] ? 1 : -1;
 		} else {
-			return a[field] < b[field];
+			return a[field] < b[field] ? 1 : -1;
 		}
 	});
 }
